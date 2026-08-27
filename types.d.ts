@@ -5293,6 +5293,44 @@ declare interface ContextTimestampAndHash {
 	symlinks?: Set<string>;
 }
 type ContextTypes = KnownContext & Record<any, any>;
+
+/**
+ * A pattern of files which are copied to the output directory.
+ */
+declare interface CopyObjectPattern {
+	/**
+	 * Filename template of a copied file inside 'to'. Defaults to '[path][base]', which keeps the name and the directory structure below 'from'.
+	 */
+	filename?: string | ((pathData: PathData, assetInfo?: AssetInfo) => string);
+
+	/**
+	 * Glob or path from where the files are copied.
+	 */
+	from: string;
+
+	/**
+	 * Directory the files are copied to, relative to 'output.path'.
+	 */
+	to?: string;
+
+	/**
+	 * Modifies the content of a copied file.
+	 */
+	transform?: (
+		content: Buffer,
+		absoluteFilename: string
+	) => string | Buffer | Promise<string | Buffer>;
+}
+type CopyPattern = string | CopyObjectPattern;
+declare class CopyPlugin {
+	constructor(patterns: CopyPattern[]);
+	patterns: CopyPattern[];
+
+	/**
+	 * Apply the plugin
+	 */
+	apply(compiler: Compiler): void;
+}
 type CreateData = NormalModuleCreateData & { settings: ModuleSettings };
 type CreateReadStreamFSImplementation = FSImplementation & {
 	read: (...args: any[]) => any;
@@ -14881,6 +14919,11 @@ declare interface KnownAssetInfo {
 	sourceFilename?: string;
 
 	/**
+	 * true, when the asset was copied from a file by `output.copy`
+	 */
+	copied?: boolean;
+
+	/**
 	 * size in bytes, only set after asset has been emitted
 	 */
 	size?: number;
@@ -20952,6 +20995,12 @@ declare interface Output {
 	compareBeforeEmit?: boolean;
 
 	/**
+	 * Copy files and directories to the output directory.
+	 * @since 5.110.0
+	 */
+	copy?: string | CopyPattern[];
+
+	/**
 	 * This option enables cross-origin loading of chunks.
 	 */
 	crossOriginLoading?: false | "anonymous" | "use-credentials";
@@ -21475,6 +21524,11 @@ declare interface OutputNormalized {
 	 * Check if to be emitted file already exists and have the same content before writing to output filesystem.
 	 */
 	compareBeforeEmit?: boolean;
+
+	/**
+	 * Patterns of files which are copied to the output directory.
+	 */
+	copy?: CopyPattern[];
 
 	/**
 	 * This option enables cross-origin loading of chunks.
@@ -31184,6 +31238,7 @@ declare namespace exports {
 		ConcatenationScope,
 		ContextExclusionPlugin,
 		ContextReplacementPlugin,
+		CopyPlugin,
 		DefinePlugin,
 		Dependency,
 		DynamicEntryPlugin,
