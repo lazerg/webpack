@@ -2,4 +2,4 @@
 "webpack": minor
 ---
 
-Minify CSS further: target-aware lowering and color fallbacks, `unusedSymbols`, matrix transforms, grid null cells, no `@charset`.
+Minify CSS further: target-aware lowering, color fallbacks and evaluation, `unusedSymbols`, `pseudoClasses`.
