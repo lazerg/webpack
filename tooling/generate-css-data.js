@@ -4843,6 +4843,7 @@ const SUPPORTED_FEATURES = [
 	],
 	["displayTwoValues", ["css.properties.display.multi-keyword_values"]],
 	["systemUiFont", ["css.properties.font-family.system-ui"]],
+	["whereSelector", ["css.selectors.where"]],
 	[
 		"textDecorationColorStyle",
 		["css.properties.text-decoration.includes_color-and-style"]
