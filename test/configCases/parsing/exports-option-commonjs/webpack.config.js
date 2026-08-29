@@ -23,8 +23,16 @@ module.exports = {
 				}
 			},
 			{
-				test: /commas\.js$/,
-				parser: { exports: "multiple first,multiple second" }
+				test: /pure-single\.js$/,
+				parser: { exports: "single Widget" }
+			},
+			{
+				test: /pure\.js$/,
+				parser: { exports: "multiple Lib" }
+			},
+			{
+				test: /member\.js$/,
+				parser: { exports: "multiple Foo.Image image" }
 			},
 			{
 				test: /unused\.js$/,

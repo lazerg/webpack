@@ -5,7 +5,23 @@ module.exports = [
 	{ message: /Invalid "named a b c" value for export/ },
 	{
 		message:
-			/Invalid "named {2}a" value for export, there must be only one separator/
+			/Invalid "named {2}a" value for export, there must be a single space between/
+	},
+	{
+		message:
+			/Invalid "multiple a,multiple b" value for export, pass an array instead of a comma-separated string/
+	},
+	{
+		message:
+			/Invalid "named\|a\|b" value for export, separate the syntax, name and alias with a space instead of "\|"/
+	},
+	{
+		message:
+			/Invalid "`a`" name for export, it must be an identifier or a member expression of identifiers/
+	},
+	{
+		message:
+			/Invalid "default" name for export, it must be an identifier or a member expression of identifiers/
 	},
 	{ message: /The "default" syntax can't have "b" alias in "default a b"/ },
 	{

@@ -12,4 +12,8 @@ it("should report every invalid exports option", () => {
 	require("./missing");
 	require("./imported");
 	require("./esm");
+	require("./comma");
+	require("./pipe");
+	require("./invalid-name");
+	require("./reserved-name");
 });

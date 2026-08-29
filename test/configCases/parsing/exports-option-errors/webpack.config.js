@@ -47,6 +47,22 @@ module.exports = {
 			{
 				test: /esm\.js$/,
 				parser: { exports: "single x" }
+			},
+			{
+				test: /comma\.js$/,
+				parser: { exports: "multiple a,multiple b" }
+			},
+			{
+				test: /pipe\.js$/,
+				parser: { exports: "named|a|b" }
+			},
+			{
+				test: /invalid-name\.js$/,
+				parser: { exports: "multiple `a`" }
+			},
+			{
+				test: /reserved-name\.js$/,
+				parser: { exports: "multiple default" }
 			}
 		]
 	}

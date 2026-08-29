@@ -15,6 +15,10 @@ module.exports = {
 			{
 				test: /bare\.js$/,
 				parser: { exports: "value" }
+			},
+			{
+				test: /pure\.js$/,
+				parser: { exports: ["named Lib", "default Widget.create"] }
 			}
 		]
 	},
