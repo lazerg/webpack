@@ -13,9 +13,7 @@ it("should produce a complete CSS file when splitChunks is configured", () => {
 		"utf-8"
 	);
 
-	// The CSS file must contain BOTH the local and shared styles.
-	// If splitChunks extracted shared-lib/shared.css into a vendor chunk,
-	// the URL would point to an incomplete file missing .shared.
+	// Incomplete if splitChunks pulled shared-lib out of the standalone entry.
 	expect(cssContent).toContain(".local");
 	expect(cssContent).toContain(".shared");
 });

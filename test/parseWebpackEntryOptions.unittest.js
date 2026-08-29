@@ -27,9 +27,9 @@ describe("parseWebpackEntryOptions", () => {
 		expect(parseWebpackEntryOptions(undefined, () => {}, loc)).toBeUndefined();
 	});
 
-	it("parses webpackChunkName", () => {
-		expect(parse({ webpackChunkName: "my-chunk" }).entryOptions).toEqual({
-			name: "my-chunk"
+	it("parses empty webpackChunkName", () => {
+		expect(parse({ webpackChunkName: "" }).entryOptions).toEqual({
+			name: ""
 		});
 	});
 

@@ -2,4 +2,4 @@
 "webpack": minor
 ---
 
-Support CSS export via `new URL("./style.css", import.meta.url)` with `experiments.css`.
+Support CSS URLs from `new URL()` with `experiments.css`.

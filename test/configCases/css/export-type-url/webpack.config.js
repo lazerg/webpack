@@ -14,6 +14,10 @@ module.exports = [
 		},
 		output: {
 			cssFilename: "[name].css"
+		},
+		node: {
+			__dirname: false,
+			__filename: false
 		}
 	},
 	{
@@ -25,6 +29,10 @@ module.exports = [
 		},
 		output: {
 			cssFilename: "dev-[name].css"
+		},
+		node: {
+			__dirname: false,
+			__filename: false
 		}
 	}
 ];

@@ -14,7 +14,9 @@ module.exports = {
 		const expectedMin = (i + 1) * 4 - i;
 		if (cssFiles.length < expectedMin) {
 			throw new Error(
-				`Expected at least ${expectedMin} CSS files after config ${i}, got ${cssFiles.length}: ${cssFiles.join(", ")}`
+				`Expected at least ${expectedMin} CSS files after config ${i}, got ${
+					cssFiles.length
+				}: ${cssFiles.join(", ")}`
 			);
 		}
 		const allCss = cssFiles
@@ -35,6 +37,26 @@ module.exports = {
 			throw new Error(
 				"CSS files missing .chunk-named class from chunk-named.css"
 			);
+		}
+		if (!/\.png/.test(allCss)) {
+			throw new Error("CSS files missing resolved url() for img.png");
+		}
+		// Development uses named chunk ids, so entry names appear in filenames.
+		if (i === 1) {
+			if (!files.some((f) => f.includes("named-style"))) {
+				throw new Error(
+					`Expected a named-style CSS asset in development, got: ${files.join(
+						", "
+					)}`
+				);
+			}
+			if (!files.some((f) => f.includes("chunk-named-style"))) {
+				throw new Error(
+					`Expected a chunk-named-style CSS asset in development, got: ${files.join(
+						", "
+					)}`
+				);
+			}
 		}
 		return [`bundle${i}.js`];
 	}
