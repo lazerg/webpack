@@ -4851,6 +4851,45 @@ Object {
     "multiple": false,
     "simpleType": "boolean",
   },
+  "module-parser-javascript-auto-exports": Object {
+    "configs": Array [
+      Object {
+        "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+        "multiple": true,
+        "path": "module.parser.javascript/auto.exports[]",
+        "type": "string",
+      },
+    ],
+    "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-auto-exports-alias": Object {
+    "configs": Array [
+      Object {
+        "description": "Name the export is available under, when it differs from the name in the module.",
+        "multiple": true,
+        "path": "module.parser.javascript/auto.exports[].alias",
+        "type": "string",
+      },
+    ],
+    "description": "Name the export is available under, when it differs from the name in the module.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-auto-exports-name": Object {
+    "configs": Array [
+      Object {
+        "description": "Name in the module which is exported.",
+        "multiple": true,
+        "path": "module.parser.javascript/auto.exports[].name",
+        "type": "string",
+      },
+    ],
+    "description": "Name in the module which is exported.",
+    "multiple": true,
+    "simpleType": "string",
+  },
   "module-parser-javascript-auto-exports-presence": Object {
     "configs": Array [
       Object {
@@ -4868,6 +4907,38 @@ Object {
     ],
     "description": "Specifies the behavior of invalid export names in \\"import ... from ...\\" and \\"export ... from ...\\".",
     "multiple": false,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-auto-exports-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in 'module.parser.javascript/auto.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+        "multiple": false,
+        "path": "module.parser.javascript/auto.exports",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in 'module.parser.javascript/auto.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "module-parser-javascript-auto-exports-syntax": Object {
+    "configs": Array [
+      Object {
+        "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+        "multiple": true,
+        "path": "module.parser.javascript/auto.exports[].syntax",
+        "type": "enum",
+        "values": Array [
+          "default",
+          "named",
+          "single",
+          "multiple",
+        ],
+      },
+    ],
+    "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+    "multiple": true,
     "simpleType": "string",
   },
   "module-parser-javascript-auto-expr-context-critical": Object {
@@ -6149,6 +6220,45 @@ Object {
     "multiple": false,
     "simpleType": "boolean",
   },
+  "module-parser-javascript-dynamic-exports": Object {
+    "configs": Array [
+      Object {
+        "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+        "multiple": true,
+        "path": "module.parser.javascript/dynamic.exports[]",
+        "type": "string",
+      },
+    ],
+    "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-dynamic-exports-alias": Object {
+    "configs": Array [
+      Object {
+        "description": "Name the export is available under, when it differs from the name in the module.",
+        "multiple": true,
+        "path": "module.parser.javascript/dynamic.exports[].alias",
+        "type": "string",
+      },
+    ],
+    "description": "Name the export is available under, when it differs from the name in the module.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-dynamic-exports-name": Object {
+    "configs": Array [
+      Object {
+        "description": "Name in the module which is exported.",
+        "multiple": true,
+        "path": "module.parser.javascript/dynamic.exports[].name",
+        "type": "string",
+      },
+    ],
+    "description": "Name in the module which is exported.",
+    "multiple": true,
+    "simpleType": "string",
+  },
   "module-parser-javascript-dynamic-exports-presence": Object {
     "configs": Array [
       Object {
@@ -6166,6 +6276,38 @@ Object {
     ],
     "description": "Specifies the behavior of invalid export names in \\"import ... from ...\\" and \\"export ... from ...\\".",
     "multiple": false,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-dynamic-exports-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in 'module.parser.javascript/dynamic.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+        "multiple": false,
+        "path": "module.parser.javascript/dynamic.exports",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in 'module.parser.javascript/dynamic.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "module-parser-javascript-dynamic-exports-syntax": Object {
+    "configs": Array [
+      Object {
+        "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+        "multiple": true,
+        "path": "module.parser.javascript/dynamic.exports[].syntax",
+        "type": "enum",
+        "values": Array [
+          "default",
+          "named",
+          "single",
+          "multiple",
+        ],
+      },
+    ],
+    "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+    "multiple": true,
     "simpleType": "string",
   },
   "module-parser-javascript-dynamic-expr-context-critical": Object {
@@ -7477,6 +7619,45 @@ Object {
     "multiple": false,
     "simpleType": "boolean",
   },
+  "module-parser-javascript-esm-exports": Object {
+    "configs": Array [
+      Object {
+        "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+        "multiple": true,
+        "path": "module.parser.javascript/esm.exports[]",
+        "type": "string",
+      },
+    ],
+    "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-esm-exports-alias": Object {
+    "configs": Array [
+      Object {
+        "description": "Name the export is available under, when it differs from the name in the module.",
+        "multiple": true,
+        "path": "module.parser.javascript/esm.exports[].alias",
+        "type": "string",
+      },
+    ],
+    "description": "Name the export is available under, when it differs from the name in the module.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-esm-exports-name": Object {
+    "configs": Array [
+      Object {
+        "description": "Name in the module which is exported.",
+        "multiple": true,
+        "path": "module.parser.javascript/esm.exports[].name",
+        "type": "string",
+      },
+    ],
+    "description": "Name in the module which is exported.",
+    "multiple": true,
+    "simpleType": "string",
+  },
   "module-parser-javascript-esm-exports-presence": Object {
     "configs": Array [
       Object {
@@ -7494,6 +7675,38 @@ Object {
     ],
     "description": "Specifies the behavior of invalid export names in \\"import ... from ...\\" and \\"export ... from ...\\".",
     "multiple": false,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-esm-exports-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in 'module.parser.javascript/esm.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+        "multiple": false,
+        "path": "module.parser.javascript/esm.exports",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in 'module.parser.javascript/esm.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "module-parser-javascript-esm-exports-syntax": Object {
+    "configs": Array [
+      Object {
+        "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+        "multiple": true,
+        "path": "module.parser.javascript/esm.exports[].syntax",
+        "type": "enum",
+        "values": Array [
+          "default",
+          "named",
+          "single",
+          "multiple",
+        ],
+      },
+    ],
+    "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+    "multiple": true,
     "simpleType": "string",
   },
   "module-parser-javascript-esm-expr-context-critical": Object {
@@ -8496,6 +8709,45 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "module-parser-javascript-exports": Object {
+    "configs": Array [
+      Object {
+        "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+        "multiple": true,
+        "path": "module.parser.javascript.exports[]",
+        "type": "string",
+      },
+    ],
+    "description": "An export added to a module: \\"<syntax> <name> [<alias>]\\" (e.g. \\"named Foo Bar\\") or the same in object form.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-exports-alias": Object {
+    "configs": Array [
+      Object {
+        "description": "Name the export is available under, when it differs from the name in the module.",
+        "multiple": true,
+        "path": "module.parser.javascript.exports[].alias",
+        "type": "string",
+      },
+    ],
+    "description": "Name the export is available under, when it differs from the name in the module.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-exports-name": Object {
+    "configs": Array [
+      Object {
+        "description": "Name in the module which is exported.",
+        "multiple": true,
+        "path": "module.parser.javascript.exports[].name",
+        "type": "string",
+      },
+    ],
+    "description": "Name in the module which is exported.",
+    "multiple": true,
+    "simpleType": "string",
+  },
   "module-parser-javascript-exports-presence": Object {
     "configs": Array [
       Object {
@@ -8513,6 +8765,38 @@ Object {
     ],
     "description": "Specifies the behavior of invalid export names in \\"import ... from ...\\" and \\"export ... from ...\\".",
     "multiple": false,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-exports-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in 'module.parser.javascript.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+        "multiple": false,
+        "path": "module.parser.javascript.exports",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in 'module.parser.javascript.exports' configuration. Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "module-parser-javascript-exports-syntax": Object {
+    "configs": Array [
+      Object {
+        "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+        "multiple": true,
+        "path": "module.parser.javascript.exports[].syntax",
+        "type": "enum",
+        "values": Array [
+          "default",
+          "named",
+          "single",
+          "multiple",
+        ],
+      },
+    ],
+    "description": "Kind of export: \\"default\\"/\\"named\\" generate ES module exports, \\"single\\"/\\"multiple\\" generate CommonJs exports.",
+    "multiple": true,
     "simpleType": "string",
   },
   "module-parser-javascript-expr-context-critical": Object {

@@ -1007,6 +1007,31 @@ export type IgnoreWarningsNormalized =
 export type ImportMetaParserOptions = ImportMetaParserOptionsKnown &
 	ImportMetaParserOptionsUnknown;
 /**
+ * An export added to a module: "<syntax> <name> [<alias>]" (e.g. "named Foo Bar") or the same in object form.
+ */
+export type JavascriptParserExport =
+	| string
+	| {
+			/**
+			 * Name the export is available under, when it differs from the name in the module.
+			 */
+			alias?: string;
+			/**
+			 * Name in the module which is exported.
+			 */
+			name: string;
+			/**
+			 * Kind of export: "default"/"named" generate ES module exports, "single"/"multiple" generate CommonJs exports.
+			 */
+			syntax?: "default" | "named" | "single" | "multiple";
+	  };
+/**
+ * Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.
+ * @since 5.111.0
+ */
+export type JavascriptParserExports =
+	JavascriptParserExport[] | JavascriptParserExport;
+/**
  * Create an additional chunk which contains only the webpack runtime and chunk hash maps.
  */
 export type OptimizationRuntimeChunkNormalized =
@@ -4607,6 +4632,11 @@ export interface JavascriptParserOptions {
 	 * Enable/disable parsing of dynamic URL.
 	 */
 	dynamicUrl?: boolean;
+	/**
+	 * Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.
+	 * @since 5.111.0
+	 */
+	exports?: JavascriptParserExports;
 	/**
 	 * Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ...".
 	 */

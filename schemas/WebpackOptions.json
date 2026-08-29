@@ -2591,6 +2591,52 @@
         }
       }
     },
+    "JavascriptParserExport": {
+      "description": "An export added to a module: \"<syntax> <name> [<alias>]\" (e.g. \"named Foo Bar\") or the same in object form.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "alias": {
+              "description": "Name the export is available under, when it differs from the name in the module.",
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "description": "Name in the module which is exported.",
+              "type": "string",
+              "minLength": 1
+            },
+            "syntax": {
+              "description": "Kind of export: \"default\"/\"named\" generate ES module exports, \"single\"/\"multiple\" generate CommonJs exports.",
+              "enum": ["default", "named", "single", "multiple"]
+            }
+          },
+          "required": ["name"]
+        }
+      ]
+    },
+    "JavascriptParserExports": {
+      "description": "Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JavascriptParserExport"
+          },
+          "minItems": 1
+        },
+        {
+          "$ref": "#/definitions/JavascriptParserExport"
+        }
+      ],
+      "added": "5.111.0"
+    },
     "JavascriptParserOptions": {
       "description": "Parser options for javascript modules.",
       "type": "object",
@@ -2676,6 +2722,9 @@
         "dynamicUrl": {
           "description": "Enable/disable parsing of dynamic URL.",
           "type": "boolean"
+        },
+        "exports": {
+          "$ref": "#/definitions/JavascriptParserExports"
         },
         "exportsPresence": {
           "description": "Specifies the behavior of invalid export names in \"import ... from ...\" and \"export ... from ...\".",

@@ -14463,6 +14463,22 @@ declare class JavascriptParser extends ParserClass {
 			| ImportExpressionJavascriptParser
 	) => undefined | ImportAttributes;
 }
+type JavascriptParserExport =
+	| string
+	| {
+			/**
+			 * Name the export is available under, when it differs from the name in the module.
+			 */
+			alias?: string;
+			/**
+			 * Name in the module which is exported.
+			 */
+			name: string;
+			/**
+			 * Kind of export: "default"/"named" generate ES module exports, "single"/"multiple" generate CommonJs exports.
+			 */
+			syntax?: "named" | "default" | "single" | "multiple";
+	  };
 
 /**
  * Parser options for javascript modules.
@@ -14534,6 +14550,28 @@ declare interface JavascriptParserOptions {
 	 * Enable/disable parsing of dynamic URL.
 	 */
 	dynamicUrl?: boolean;
+
+	/**
+	 * Add exports to a module which does not export them itself, e.g. a legacy script assigning globals.
+	 * @since 5.111.0
+	 */
+	exports?:
+		| string
+		| JavascriptParserExport[]
+		| {
+				/**
+				 * Name the export is available under, when it differs from the name in the module.
+				 */
+				alias?: string;
+				/**
+				 * Name in the module which is exported.
+				 */
+				name: string;
+				/**
+				 * Kind of export: "default"/"named" generate ES module exports, "single"/"multiple" generate CommonJs exports.
+				 */
+				syntax?: "named" | "default" | "single" | "multiple";
+		  };
 
 	/**
 	 * Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ...".
