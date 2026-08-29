@@ -2744,6 +2744,11 @@
           "description": "Override the module to strict or non-strict. This may affect the behavior of the module (some behaviors differ between strict and non-strict), so please configure this option carefully.",
           "enum": ["strict", "non-strict"]
         },
+        "overrideTopLevelThis": {
+          "description": "Override the value of `this` in the top-level scope of the module. \"global\" is the platform global object, which legacy scripts written for a script tag expect.",
+          "enum": ["global", "undefined"],
+          "added": "5.111.0"
+        },
         "parse": {
           "description": "Function to parser source code.",
           "instanceof": "Function",

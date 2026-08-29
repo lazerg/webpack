@@ -5218,6 +5218,23 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "module-parser-javascript-auto-override-top-level-this": Object {
+    "configs": Array [
+      Object {
+        "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+        "multiple": false,
+        "path": "module.parser.javascript/auto.overrideTopLevelThis",
+        "type": "enum",
+        "values": Array [
+          "global",
+          "undefined",
+        ],
+      },
+    ],
+    "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+    "multiple": false,
+    "simpleType": "string",
+  },
   "module-parser-javascript-auto-pure-functions": Object {
     "configs": Array [
       Object {
@@ -6611,6 +6628,23 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "module-parser-javascript-dynamic-override-top-level-this": Object {
+    "configs": Array [
+      Object {
+        "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+        "multiple": false,
+        "path": "module.parser.javascript/dynamic.overrideTopLevelThis",
+        "type": "enum",
+        "values": Array [
+          "global",
+          "undefined",
+        ],
+      },
+    ],
+    "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+    "multiple": false,
+    "simpleType": "string",
+  },
   "module-parser-javascript-dynamic-pure-functions": Object {
     "configs": Array [
       Object {
@@ -7844,6 +7878,23 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "module-parser-javascript-esm-override-top-level-this": Object {
+    "configs": Array [
+      Object {
+        "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+        "multiple": false,
+        "path": "module.parser.javascript/esm.overrideTopLevelThis",
+        "type": "enum",
+        "values": Array [
+          "global",
+          "undefined",
+        ],
+      },
+    ],
+    "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+    "multiple": false,
+    "simpleType": "string",
+  },
   "module-parser-javascript-esm-pure-functions": Object {
     "configs": Array [
       Object {
@@ -8860,6 +8911,23 @@ Object {
       },
     ],
     "description": "Override the module to strict or non-strict. This may affect the behavior of the module (some behaviors differ between strict and non-strict), so please configure this option carefully.",
+    "multiple": false,
+    "simpleType": "string",
+  },
+  "module-parser-javascript-override-top-level-this": Object {
+    "configs": Array [
+      Object {
+        "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
+        "multiple": false,
+        "path": "module.parser.javascript.overrideTopLevelThis",
+        "type": "enum",
+        "values": Array [
+          "global",
+          "undefined",
+        ],
+      },
+    ],
+    "description": "Override the value of \`this\` in the top-level scope of the module. \\"global\\" is the platform global object, which legacy scripts written for a script tag expect.",
     "multiple": false,
     "simpleType": "string",
   },

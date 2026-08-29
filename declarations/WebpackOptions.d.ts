@@ -4657,6 +4657,11 @@ export interface JavascriptParserOptions {
 	 */
 	overrideStrict?: "strict" | "non-strict";
 	/**
+	 * Override the value of `this` in the top-level scope of the module. "global" is the platform global object, which legacy scripts written for a script tag expect.
+	 * @since 5.111.0
+	 */
+	overrideTopLevelThis?: "global" | "undefined";
+	/**
 	 * Function to parser source code.
 	 */
 	parse?: import("../lib/javascript/JavascriptParser").ParseFunction;
