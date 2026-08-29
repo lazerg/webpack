@@ -598,6 +598,18 @@ Read the "emitted nothing" note before the numbers: a case whose build now error
 
 Say what it reported in the PR when the numbers moved.
 
+### Emitted code holds for every output shape
+
+> [!REQUIRED]
+
+Whatever writes code into a module or a chunk — a dependency template, a generator, a plugin appending to what a module renders — is checked against three output shapes as well as against the targets above, because each one changes what that code may assume:
+
+- **ESM output** — `experiments.outputModule` with `output.module`, and again with `library: { type: "module" }`. Chunks are ESM and an entry module can be emitted at the chunk's top level rather than as a factory, so `module` and `__webpack_exports__` are in scope only where the module's runtime requirements ask for them: declare what you read (`RuntimeGlobals.module`, `RuntimeGlobals.exports`) instead of assuming an argument is there. In an async (top-level `await`) module the runtime replaces `module.exports` with the module's promise, so read the exports argument in that one.
+- **The universal target** — `target: ["web", "node"]` runs the same bundle on both, so emitted code touches no DOM API unguarded (see the section above for how its runtime does it).
+- **Analyzable output**, where an asset whose every javascript consumer is a bare `new URL()` keeps **no javascript module at all** — the reference is a baked literal instead. Code hung on such a module is simply never emitted, and nothing fails. Ask `chunkGraph.getModuleSourceTypes(module)` what a module really generates rather than assuming javascript (see [Don't enumerate module or source types](#dont-enumerate-module-or-source-types)), and say what happened — a warning naming the module — when the answer means the change cannot apply.
+
+Each of the three gets its own `configCases/` case, alongside the per-target cases the section above asks for. `configCases/analyzable/` holds the analyzable line for the whole repo; `configCases/expose/` is a worked example of one plugin meeting all three.
+
 ### Lint covers every file, docs included
 
 The `lint` job runs Prettier (`fmt:check`) and cspell (`lint:spellcheck`) across the **whole repo** — Markdown and this guide too, not just `lib/`. Run `yarn fix` before pushing even a docs-only change: an unaligned Markdown table or a word cspell doesn't know fails `lint` on its own. For a new/unusual word, add it to the `words` list in `cspell.json` (or reword); Prettier reformats Markdown tables, so hand-written columns must match its output.
