@@ -1,0 +1,212 @@
+{
+  "definitions": {
+    "ExposeRule": {
+      "description": "Modules to expose, selected by request or by module path.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exclude": {
+          "description": "Exclude all modules matching any of these conditions.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Rules"
+            }
+          ]
+        },
+        "expose": {
+          "description": "Names in the global object the matching modules are assigned to.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Exposed"
+            }
+          ]
+        },
+        "globalObject": {
+          "description": "An expression to the global object, defaults to the global object of the target environment.",
+          "type": "string",
+          "minLength": 1
+        },
+        "include": {
+          "description": "Include all modules matching any of these conditions.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Rules"
+            }
+          ]
+        },
+        "request": {
+          "description": "Request of the module to expose, as written in the source code or as an absolute path.",
+          "type": "string",
+          "minLength": 1
+        },
+        "test": {
+          "description": "Include all modules that pass test assertion.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Rules"
+            }
+          ]
+        }
+      },
+      "required": ["expose"],
+      "anyOf": [
+        {
+          "required": ["request"]
+        },
+        {
+          "required": ["test"]
+        },
+        {
+          "required": ["include"]
+        }
+      ]
+    },
+    "Exposed": {
+      "description": "Names in the global object a module is assigned to.",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "description": "A name in the global object a module is assigned to.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ExposedItem"
+              }
+            ]
+          },
+          "minItems": 1
+        },
+        {
+          "$ref": "#/definitions/ExposedItem"
+        }
+      ]
+    },
+    "ExposedItem": {
+      "description": "A name in the global object a module is assigned to.",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ExposedItemShorthand"
+        },
+        {
+          "$ref": "#/definitions/ExposedItemObject"
+        }
+      ]
+    },
+    "ExposedItemObject": {
+      "description": "A name in the global object a module is assigned to.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "globalName": {
+          "description": "The name in the global object, a nested name is created when it contains dots or is an array.",
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "description": "A part of the name in the global object.",
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "moduleLocalName": {
+          "description": "The name of the export of the module to expose, the whole module is exposed when unset.",
+          "type": "string",
+          "minLength": 1
+        },
+        "override": {
+          "description": "Overwrite an existing value in the global object.",
+          "type": "boolean"
+        }
+      },
+      "required": ["globalName"]
+    },
+    "ExposedItemShorthand": {
+      "description": "A name in the global object, optionally followed by the name of the export to expose and whether to overwrite an existing value, separated by a space or '|' (i.e. '_.map|mapExpose|true').",
+      "type": "string",
+      "minLength": 1
+    },
+    "Rule": {
+      "description": "Filtering rule as regex or string.",
+      "anyOf": [
+        {
+          "instanceof": "RegExp",
+          "tsType": "RegExp"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "instanceof": "Function",
+          "tsType": "import('../../lib/ModuleFilenameHelpers').MatcherFn"
+        }
+      ]
+    },
+    "Rules": {
+      "description": "Filtering rules.",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "description": "A rule condition.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Rule"
+              }
+            ]
+          }
+        },
+        {
+          "$ref": "#/definitions/Rule"
+        }
+      ]
+    }
+  },
+  "title": "ExposePluginOptions",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "exposes": {
+      "description": "Modules to expose to the global object, either keyed by request or as a list of rules.",
+      "anyOf": [
+        {
+          "description": "Modules to expose to the global object.",
+          "type": "array",
+          "items": {
+            "description": "Modules to expose to the global object.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ExposeRule"
+              }
+            ]
+          }
+        },
+        {
+          "description": "Modules to expose to the global object, keyed by request or by absolute path.",
+          "type": "object",
+          "additionalProperties": {
+            "description": "Names in the global object the module is assigned to.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Exposed"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "globalObject": {
+      "description": "An expression to the global object, defaults to the global object of the target environment.",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": ["exposes"]
+}

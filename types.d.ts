@@ -8471,6 +8471,80 @@ declare interface ExportsSpec {
 }
 type ExportsType =
 	"namespace" | "dynamic" | "default-only" | "default-with-named";
+declare class ExposePlugin {
+	/**
+	 * Creates an instance of ExposePlugin.
+	 */
+	constructor(options: ExposePluginOptions);
+	options: ExposePluginOptions;
+
+	/**
+	 * Applies the plugin by registering its hooks on the compiler.
+	 */
+	apply(compiler: Compiler): void;
+}
+declare interface ExposePluginOptions {
+	/**
+	 * Modules to expose to the global object, either keyed by request or as a list of rules.
+	 */
+	exposes: ExposeRule[] | { [index: string]: Exposed };
+
+	/**
+	 * An expression to the global object, defaults to the global object of the target environment.
+	 */
+	globalObject?: string;
+}
+type ExposeRule = ExposeRule1 & {
+	/**
+	 * Exclude all modules matching any of these conditions.
+	 */
+	exclude?: string | RegExp | ((str: string) => boolean) | RuleAlias[];
+	/**
+	 * Names in the global object the matching modules are assigned to.
+	 */
+	expose: Exposed;
+	/**
+	 * An expression to the global object, defaults to the global object of the target environment.
+	 */
+	globalObject?: string;
+	/**
+	 * Include all modules matching any of these conditions.
+	 */
+	include?: string | RegExp | ((str: string) => boolean) | RuleAlias[];
+	/**
+	 * Request of the module to expose, as written in the source code or as an absolute path.
+	 */
+	request?: string;
+	/**
+	 * Include all modules that pass test assertion.
+	 */
+	test?: string | RegExp | ((str: string) => boolean) | RuleAlias[];
+};
+declare interface ExposeRule1 {
+	[index: string]: any;
+}
+type Exposed = string | ExposedItem[] | ExposedItemObject;
+type ExposedItem = string | ExposedItemObject;
+
+/**
+ * A name in the global object a module is assigned to.
+ */
+declare interface ExposedItemObject {
+	/**
+	 * The name in the global object, a nested name is created when it contains dots or is an array.
+	 */
+	globalName: string | string[];
+
+	/**
+	 * The name of the export of the module to expose, the whole module is exposed when unset.
+	 */
+	moduleLocalName?: string;
+
+	/**
+	 * Overwrite an existing value in the global object.
+	 */
+	override?: boolean;
+}
 type Exposes = (string | ExposesObject)[] | ExposesObject;
 
 /**
@@ -31243,6 +31317,7 @@ declare namespace exports {
 		EnvironmentPlugin,
 		EvalDevToolModulePlugin,
 		EvalSourceMapDevToolPlugin,
+		ExposePlugin,
 		ExternalModule,
 		ExternalsPlugin,
 		Generator,
